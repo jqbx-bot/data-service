@@ -6,7 +6,9 @@ COPY Pipfile.lock .
 RUN pip install --upgrade pip
 RUN pip install pipenv
 RUN pipenv install
-COPY src/ .
+RUN pipenv lock --requirements > requirements.txt
+RUN pip install -r requirements.txt -t .
+COPY src src
 
 RUN ls -l .
 
