@@ -3,6 +3,7 @@ FROM amazon/aws-lambda-python:3.8
 RUN echo ${LAMBDA_TASK_ROOT}
 
 COPY Pipfile.lock .
+RUN ls -l .
 RUN pip install --upgrade pip
 RUN pip install pipenv
 RUN pipenv install
