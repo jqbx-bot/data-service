@@ -9,7 +9,7 @@ RUN pip install --upgrade pip
 RUN pip install pipenv
 RUN pipenv install
 RUN pipenv lock --requirements > requirements.txt
-RUN pip install -r requirements.txt -t . --compile
+RUN pip install -r requirements.txt --compile -t .
 
 RUN ls -l .
 
