@@ -4,8 +4,7 @@ COPY Pipfile .
 RUN pip install --upgrade pip
 RUN pip install pipenv
 RUN pipenv lock --requirements > requirements.txt
-RUN cat requirements.txt
 RUN pip install -r requirements.txt
-COPY src/ ${LAMBDA_TASK_ROOT}
+COPY src/ ${LAMBDA_TASK_ROOT}/src
 
-CMD ["main.lambda_handler"]
+CMD ["src.main.lambda_handler"]
