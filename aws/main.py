@@ -2,8 +2,7 @@ import os
 from os import environ
 from typing import cast
 
-from aws_cdk.aws_apigatewayv2 import HttpApi, CorsPreflightOptions, CorsHttpMethod, IHttpRouteIntegration
-from aws_cdk.aws_apigatewayv2_integrations import LambdaProxyIntegration
+from aws_cdk.aws_apigateway import LambdaRestApi, CorsOptions
 from aws_cdk.aws_iam import ServicePrincipal, Role, IPrincipal, PolicyDocument, PolicyStatement, Effect
 from aws_cdk.aws_lambda import DockerImageFunction, DockerImageCode
 from aws_cdk.core import Stack, Construct, App, Environment
@@ -68,17 +67,13 @@ class MainStack(Stack):
             role=role,
             environment={}
         )
-
-        HttpApi(
+        LambdaRestApi(
             self,
             'Api',
-            cors_preflight=CorsPreflightOptions(
-                allow_methods=[CorsHttpMethod.ANY],
+            handler=function,
+            default_cors_preflight_options=CorsOptions(
                 allow_origins=['*']
-            ),
-            default_integration=cast(IHttpRouteIntegration, LambdaProxyIntegration(
-                handler=function
-            ))
+            )
         )
 
 
