@@ -2,8 +2,10 @@ import os
 from os import environ
 from typing import cast
 
+from aws_cdk.aws_apigatewayv2 import HttpApi, CorsPreflightOptions, CorsHttpMethod, IHttpRouteIntegration
+from aws_cdk.aws_apigatewayv2_integrations import LambdaProxyIntegration
 from aws_cdk.aws_iam import ServicePrincipal, Role, IPrincipal, PolicyDocument, PolicyStatement, Effect
-from aws_cdk.aws_lambda import DockerImageFunction, DockerImageCode, AssetImageCodeProps
+from aws_cdk.aws_lambda import DockerImageFunction, DockerImageCode
 from aws_cdk.core import Stack, Construct, App, Environment
 
 
@@ -55,7 +57,7 @@ class MainStack(Stack):
                 )
             }
         )
-        DockerImageFunction(
+        function = DockerImageFunction(
             self,
             'Function',
             code=DockerImageCode.from_image_asset(
@@ -66,30 +68,18 @@ class MainStack(Stack):
             role=role,
             environment={}
         )
-        # CfnFunction(
-        #     self,
-        #     'Function',
-        #     code_uri='.build',
-        #     handler='src.main.lambda_handler',
-        #     runtime='python3.8',
-        #     role=role.role_arn,
-        #     events={
-        #         'Get': CfnFunction.EventSourceProperty(
-        #             type='Api',
-        #             properties=CfnFunction.ApiEventProperty(
-        #                 method='get',
-        #                 path='/{proxy+}'
-        #             )
-        #         ),
-        #         'Post': CfnFunction.EventSourceProperty(
-        #             type='Api',
-        #             properties=CfnFunction.ApiEventProperty(
-        #                 method='post',
-        #                 path='/{proxy+}'
-        #             )
-        #         )
-        #     }
-        # )
+
+        HttpApi(
+            self,
+            'Api',
+            cors_preflight=CorsPreflightOptions(
+                allow_methods=[CorsHttpMethod.ANY],
+                allow_origins=['*']
+            ),
+            default_integration=cast(IHttpRouteIntegration, LambdaProxyIntegration(
+                handler=function
+            ))
+        )
 
 
 if __name__ == '__main__':
