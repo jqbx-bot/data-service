@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+boto3 = "*"
+flask = "*"
+flask-cors = "*"
+aws-wsgi = "*"
+
+[dev-packages]
+aws-cdk-aws-sam = "*"
+aws-cdk-core = "*"
+aws-cdk-aws-lambda = "*"
+aws-cdk-aws-iam = "*"
+
+[requires]
+python_version = "3.8"
