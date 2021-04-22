@@ -11,6 +11,7 @@ app.register_blueprint(welcome_message)
 
 
 def lambda_handler(event: dict, context: Any):
+    print('event: %s' % event)
     return awsgi.response(app, event, context)
 
 
