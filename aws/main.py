@@ -5,7 +5,7 @@ from typing import cast
 from aws_cdk.aws_apigateway import LambdaRestApi, CorsOptions
 from aws_cdk.aws_iam import ServicePrincipal, Role, IPrincipal, PolicyDocument, PolicyStatement, Effect
 from aws_cdk.aws_lambda import DockerImageFunction, DockerImageCode
-from aws_cdk.core import Stack, Construct, App, Environment, CfnOutput
+from aws_cdk.core import Stack, Construct, App, Environment
 
 
 class MainStack(Stack):
@@ -74,11 +74,6 @@ class MainStack(Stack):
             default_cors_preflight_options=CorsOptions(
                 allow_origins=['*']
             )
-        )
-        CfnOutput(
-            self,
-            'ApiUrl',
-            value=api.url
         )
 
 
