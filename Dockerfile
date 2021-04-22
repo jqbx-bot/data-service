@@ -2,6 +2,8 @@ FROM amazon/aws-lambda-python:3.8
 
 MAINTAINER Aaron Mamparo
 
+WORKDIR .
+
 COPY Pipfile.lock .
 RUN pip install --upgrade pip
 RUN pip install pipenv
