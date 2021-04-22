@@ -11,4 +11,4 @@ RUN cat requirements.txt
 RUN pip install -r requirements.txt
 COPY src/ ${LAMBDA_TASK_ROOT}
 
-CMD ['src.main.lambda_handler']
+CMD ["main.lambda_handler"]
