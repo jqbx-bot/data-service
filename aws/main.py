@@ -39,6 +39,7 @@ class MainStack(Stack):
                                         's3:ListBucket',
                                         's3:PutObject',
                                         's3:GetObject',
+                                        's3:DeleteObject',
                                         's3:ListObjects'
                                     ],
                                     resources=[
