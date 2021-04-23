@@ -3,7 +3,7 @@ from typing import Optional
 from flask import Blueprint, jsonify, make_response, request
 from injector import inject
 
-from src.file_repository.abstract_file_repository import AbstractFileRepository
+from src.app.file_repository.abstract_file_repository import AbstractFileRepository
 
 blueprint = Blueprint('welcome_message', __name__, url_prefix='/welcome_message')
 

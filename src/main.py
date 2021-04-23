@@ -1,14 +1,8 @@
-from flask import Flask
-from flask_cors import CORS
 from flask_injector import FlaskInjector
 
+from src.app.app import app
 from src.dependencies import compose_local, compose_deployed
-from src.welcome_message import blueprint as welcome_message
 import awsgi
-
-app = Flask(__name__)
-CORS(app)
-app.register_blueprint(welcome_message)
 
 
 def lambda_handler(event, context):

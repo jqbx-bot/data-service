@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from typing import Optional
 
-from src.file_repository.abstract_file_repository import AbstractFileRepository
+from src.app.file_repository.abstract_file_repository import AbstractFileRepository
 
 
 class LocalFileRepository(AbstractFileRepository):

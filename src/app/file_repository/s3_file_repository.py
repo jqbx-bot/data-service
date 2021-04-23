@@ -4,8 +4,8 @@ import boto3
 from botocore.exceptions import ClientError
 from injector import inject
 
-from src.environment import AbstractEnvironment
-from src.file_repository.abstract_file_repository import AbstractFileRepository
+from src.app.environment import AbstractEnvironment
+from src.app.file_repository.abstract_file_repository import AbstractFileRepository
 
 
 class S3FileRepository(AbstractFileRepository):
