@@ -34,7 +34,7 @@ def set_welcome_message(room_id: str, file_repository: AbstractFileRepository):
 @blueprint.route('/<room_id>', methods=['DELETE'])
 def delete_welcome_message(room_id: str, file_repository: AbstractFileRepository):
     file_repository.delete(__get_key(room_id))
-    return make_response(jsonify(None), 201)
+    return make_response(jsonify(None), 204)
 
 
 def __get_key(room_id: str) -> str:
