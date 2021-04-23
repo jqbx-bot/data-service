@@ -8,6 +8,8 @@ boto3 = "*"
 flask = "*"
 flask-cors = "*"
 aws-wsgi = "*"
+flask-injector = "*"
+python-dotenv = "*"
 
 [dev-packages]
 aws-cdk-aws-sam = "*"
@@ -15,6 +17,7 @@ aws-cdk-core = "*"
 aws-cdk-aws-lambda = "*"
 aws-cdk-aws-iam = "*"
 aws-cdk-aws-apigateway = "*"
+aws-cdk-aws-s3 = "*"
 
 [requires]
 python_version = "3.8"
