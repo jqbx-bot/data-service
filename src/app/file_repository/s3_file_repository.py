@@ -17,9 +17,7 @@ class S3FileRepository(AbstractFileRepository):
         try:
             return self.__bucket.Object(key).get()['Body'].read().decode('utf-8')
         except ClientError as e:
-            if e.response['Error']['Code'] == '404':
-                return None
-            raise
+            return self.__handle_key_error(e)
 
     def set(self, key: str, content: str) -> None:
         self.__bucket.Object(key).put(Body=content)
@@ -28,6 +26,10 @@ class S3FileRepository(AbstractFileRepository):
         try:
             self.__bucket.Object(key).delete()
         except ClientError as e:
-            if e.response['Error']['Code'] == '404':
-                return
-            raise
+            return self.__handle_key_error(e)
+
+    @staticmethod
+    def __handle_key_error(e: ClientError) -> None:
+        if e.response['Error']['Code'] in ['404', 'NoSuchKey']:
+            return
+        raise e
