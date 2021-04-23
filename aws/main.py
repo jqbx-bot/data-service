@@ -22,7 +22,7 @@ class MainStack(Stack):
             handler=DockerImageFunction(
                 self,
                 'Function',
-                code=DockerImageCode.from_image_asset(directory=os.getcwd(), file='Dockerfile'),
+                code=DockerImageCode.from_image_asset(directory=os.getcwd(), file='Dockerfile', exclude=['cdk.out']),
                 environment={
                     'S3_BUCKET': bucket.bucket_name
                 },
