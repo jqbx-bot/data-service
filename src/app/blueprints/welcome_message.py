@@ -15,7 +15,6 @@ def get_welcome_message(room_id: str, file_repository: AbstractFileRepository):
     if not welcome_message:
         return make_response(jsonify(None), 404)
     return jsonify({
-        'room_id': room_id,
         'welcome_message': file_repository.get(__get_key(room_id))
     })
 
