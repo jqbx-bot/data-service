@@ -26,4 +26,4 @@ class LocalFileRepository(AbstractFileRepository):
 
     @staticmethod
     def __get_full_path(key: str) -> str:
-        return os.path.join('.localdatalake', *[x for x in key.split('/') if x])
+        return os.path.join('.localdatalake', key)

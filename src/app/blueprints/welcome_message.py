@@ -38,4 +38,4 @@ def delete_welcome_message(room_id: str, file_repository: AbstractFileRepository
 
 
 def __get_key(room_id: str) -> str:
-    return '/welcome_message/%s.txt' % room_id
+    return 'welcome_message/%s.txt' % room_id
