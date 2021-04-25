@@ -31,4 +31,9 @@ jobs:
           AWS_DEFAULT_REGION="us-east-1" \
           AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID }}" \
           AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
+          SPOTIFY_USER_ID="${{ secrets.SPOTIFY_USER_ID }}" \
+          SPOTIFY_CLIENT_ID="${{ secrets.SPOTIFY_CLIENT_ID }}" \
+          SPOTIFY_CLIENT_SECRET="${{ secrets.SPOTIFY_CLIENT_SECRET }}" \
+          SPOTIFY_REDIRECT_URI="${{ secrets.SPOTIFY_REDIRECT_URI }}" \
+          SPOTIFY_REFRESH_TOKEN="${{ secrets.SPOTIFY_REFRESH_TOKEN }}" \
           cdk deploy --require-approval never --verbose

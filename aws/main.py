@@ -24,7 +24,12 @@ class MainStack(Stack):
                 'Function',
                 code=DockerImageCode.from_image_asset(directory=os.getcwd(), file='Dockerfile', exclude=['cdk.out']),
                 environment={
-                    'S3_BUCKET': bucket.bucket_name
+                    'S3_BUCKET': bucket.bucket_name,
+                    'SPOTIFY_USER_ID': environ.get('SPOTIFY_USER_ID'),
+                    'SPOTIFY_CLIENT_ID': environ.get('SPOTIFY_CLIENT_ID'),
+                    'SPOTIFY_CLIENT_SECRET': environ.get('SPOTIFY_CLIENT_SECRET'),
+                    'SPOTIFY_REDIRECT_URI': environ.get('SPOTIFY_REDIRECT_URI'),
+                    'SPOTIFY_REFRESH_TOKEN': environ.get('SPOTIFY_REFRESH_TOKEN')
                 },
                 role=Role(
                     self,
