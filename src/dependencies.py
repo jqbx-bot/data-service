@@ -6,6 +6,7 @@ from src.app.environment import AbstractEnvironment, Environment
 from src.app.file_repository.abstract_file_repository import AbstractFileRepository
 from src.app.file_repository.local_file_repository import LocalFileRepository
 from src.app.file_repository.s3_file_repository import S3FileRepository
+from src.app.jqbx_client import AbstractJqbxClient, JqbxClient
 from src.app.logger import AbstractLogger, Logger
 from src.app.spotify_client import AbstractSpotifyClient, SpotifyClient
 
@@ -16,6 +17,7 @@ def __compose(file_repository: Type[AbstractFileRepository]) -> Callable[[Binder
         binder.bind(AbstractEnvironment, to=Environment, scope=singleton)
         binder.bind(AbstractLogger, to=Logger, scope=singleton)
         binder.bind(AbstractSpotifyClient, to=SpotifyClient, scope=singleton)
+        binder.bind(AbstractJqbxClient, to=JqbxClient, scope=singleton)
 
     return __configure
 
