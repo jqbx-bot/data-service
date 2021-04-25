@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
-from operator import itemgetter
-from typing import Optional, Callable, List
+from typing import Optional, List
 import spotipy
 from injector import inject
 
@@ -64,17 +63,3 @@ class SpotifyClient(AbstractSpotifyClient):
         if not self.__token_info or self.__oauth.is_token_expired(self.__token_info):
             self.__token_info = self.__oauth.refresh_access_token(self.__env.get_spotify_refresh_token())
         return spotipy.Spotify(auth=self.__token_info['access_token'])
-
-    @staticmethod
-    def __get_paginated_items(get_items_at_offset: Callable, n_to_get: Optional[int] = None) -> List[dict]:
-        items = []
-        offset = 0
-        while True:
-            new_items, limit = itemgetter('items', 'limit')(get_items_at_offset(offset))
-            if not new_items:
-                break
-            offset += limit
-            items.extend(new_items)
-            if n_to_get and len(items) >= n_to_get:
-                break
-        return items[:n_to_get]
