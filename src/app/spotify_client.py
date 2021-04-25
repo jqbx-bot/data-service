@@ -22,9 +22,12 @@ class SpotifyClient(AbstractSpotifyClient):
     def relink(self, track_id: str, market: str) -> Optional[str]:
         client = self.__get_authenticated_client()
         try:
-            return client.track(track_id, market=market).get('external_urls', {}).get('spotify')
+            track = client.track(track_id, market=market)
         except:
             return None
+        if track_id in track.get('uri'):
+            return None
+        return track.get('external_urls', {}).get('spotify')
 
     def __get_authenticated_client(self) -> spotipy.Spotify:
         if not self.__oauth:
