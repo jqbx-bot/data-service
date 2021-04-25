@@ -19,7 +19,7 @@ In order for the data service to work, the following environment variables need 
 
 | Environment Variable | Description |
 | --- | --- |
-| SPOTIFY_USER_ID | The user ID of the Spotify account to use |
+| SPOTIFY_USER_ID | The user ID of the Spotify account to use (NOT including the `spotify:user:` prefix) |
 | SPOTIFY_CLIENT_ID | The client ID associated with the Spotify application (for API access) |
 | SPOTIFY_CLIENT_SECRET | The client secret associated with the Spotify application (for API access) |
 | SPOTIFY_REDIRECT_URI | The redirect URI associated with the Spotify application (for API access) |
