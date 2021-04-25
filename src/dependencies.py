@@ -7,6 +7,7 @@ from src.app.file_repository.abstract_file_repository import AbstractFileReposit
 from src.app.file_repository.local_file_repository import LocalFileRepository
 from src.app.file_repository.s3_file_repository import S3FileRepository
 from src.app.logger import AbstractLogger, Logger
+from src.app.spotify_client import AbstractSpotifyClient, SpotifyClient
 
 
 def __compose(file_repository: Type[AbstractFileRepository]) -> Callable[[Binder], None]:
@@ -14,6 +15,7 @@ def __compose(file_repository: Type[AbstractFileRepository]) -> Callable[[Binder
         binder.bind(AbstractFileRepository, to=file_repository, scope=singleton)
         binder.bind(AbstractEnvironment, to=Environment, scope=singleton)
         binder.bind(AbstractLogger, to=Logger, scope=singleton)
+        binder.bind(AbstractSpotifyClient, to=SpotifyClient, scope=singleton)
 
     return __configure
 

@@ -4,12 +4,14 @@ from flask import Flask, Response
 from flask_cors import CORS
 from injector import inject
 
+from src.app.blueprints.spotify import blueprint as spotify
 from src.app.blueprints.welcome_message import blueprint as welcome_message
 from src.app.logger import AbstractLogger
 
 app = Flask(__name__)
 CORS(app)
 app.register_blueprint(welcome_message)
+app.register_blueprint(spotify)
 
 
 @inject

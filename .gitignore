@@ -3,3 +3,4 @@
 .env
 cdk.out
 .localdatalake
+.cache
